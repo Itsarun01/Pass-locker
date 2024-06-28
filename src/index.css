@@ -3,4 +3,8 @@
 @tailwind utilities;
 
 
-
+@layer components {
+    .my-container {
+       @apply container px-32  py-16  mx-auto;
+    } 
+  }
