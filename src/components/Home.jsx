@@ -1,8 +1,8 @@
 import React from "react";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 const Home = () => {
-  const [form, setForm] = useState({site: "", username: "", password: ""});
+  const [form, setForm] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Home = () => {
   };
 
   const handleChange = (e) => {
-    setForm({...form, [e.target.name]: e.target.value});
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   return (
@@ -73,6 +73,50 @@ const Home = () => {
             Save Password
           </button>
         </div>
+      </div>
+      <div className="absolute top-full left-[50%] translate-x-[-50%] saved-password w-[80vw] mx-auto h-screen text-center">
+        <h2 className="text-2xl font-bold p-9">Your Password</h2>
+        <table className="w-full rounded-xl overflow-hidden">
+          <thead className="text-center bg-red-400">
+            <tr className="w-full text-center">
+              <th className="w-2/6 p-2 text-lg border border-black">Site</th>
+              <th className="w-2/6 p-2 text-lg border border-black">Username</th>
+              <th className="w-2/6 p-2 text-lg border border-black ">Password</th>
+            </tr>
+          </thead>
+          <tbody className="bg-zinc-200 text-center">
+            <tr className="w-full">
+              <td className=" border border-black p-1">#</td>
+              <td className=" border border-black p-1">#</td>
+              <td className=" border border-black p-1">#</td>
+            </tr>
+            <tr className="w-full">
+              <td className=" border border-black p-1">#</td>
+              <td className=" border border-black p-1">#</td>
+              <td className=" border border-black p-1">#</td>
+            </tr>
+            <tr className="w-full">
+              <td className=" border border-black p-1">#</td>
+              <td className=" border border-black p-1">#</td>
+              <td className=" border border-black p-1">#</td>
+            </tr>
+            <tr className="w-full">
+              <td className=" border border-black p-1">#</td>
+              <td className=" border border-black p-1">#</td>
+              <td className=" border border-black p-1">#</td>
+            </tr>
+            <tr className="w-full">
+              <td className=" border border-black p-1">#</td>
+              <td className=" border border-black p-1">#</td>
+              <td className=" border border-black p-1">#</td>
+            </tr>
+            <tr className="w-full">
+              <td className=" border border-black p-1">#</td>
+              <td className=" border border-black p-1">#</td>
+              <td className=" border border-black p-1">#</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </>
   );
