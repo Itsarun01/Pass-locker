@@ -3,13 +3,16 @@ import {useState, useEffect} from "react";
 
 const Home = () => {
   const [form, setForm] = useState({site: "", username: "", password: ""});
+
   const [passwordArray, setPasswordArray] = useState([]);
 
   useEffect(() => {
     let passwords = localStorage.getItem("passwords");
-    let passwordArray;
-    setPasswordArray(JSON.parse(passwords));
+    if (passwords) {
+      setPasswordArray(JSON.parse(passwords));
+    }
   }, []);
+
   const savePassword = () => {
     setPasswordArray([...passwordArray, form]);
     localStorage.getItem("passwords", JSON.stringify([...passwordArray, form]));
