@@ -3,12 +3,15 @@ import {useState, useEffect} from "react";
 
 const Home = () => {
   const [form, setForm] = useState({site: "", username: "", password: ""});
+
   const [passwordArray, setPasswordArray] = useState([]);
 
   useEffect(() => {
     let passwords = localStorage.getItem("passwords");
     if (passwords) {
       setPasswordArray(JSON.parse(passwords));
+    } else {
+      setPasswordArray;
     }
   }, []);
 
@@ -27,7 +30,6 @@ const Home = () => {
       <div className="relative h-screen w-full bg-white">
         <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
       </div>
-
       <div className="my-container w-[80vw] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
         <div className="text-white text-center mb-5">
           <h1 className="text-black text-3xl font-bold mb-2">
@@ -76,53 +78,39 @@ const Home = () => {
           </button>
         </div>
       </div>
-      <div className="absolute top-full left-[50%] translate-x-[-50%] saved-password w-[80vw] mx-auto h-screen text-center">
+      <div className="absolute top-full left-[50%] translate-x-[-50%] saved-password w-[80vw] mx-auto h-auto text-center pb-12">
         <h2 className="text-2xl font-bold p-9">Your Password</h2>
-        <table className="w-full rounded-xl overflow-hidden">
-          <thead className="text-center bg-red-400">
-            <tr className="w-full text-center">
-              <th className="w-2/6 p-2 text-lg border border-black">Site</th>
-              <th className="w-2/6 p-2 text-lg border border-black">
-                Username
-              </th>
-              <th className="w-2/6 p-2 text-lg border border-black ">
-                Password
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-zinc-200 text-center">
-            <tr className="w-full">
-              <td className=" border border-black p-1">#</td>
-              <td className=" border border-black p-1">#</td>
-              <td className=" border border-black p-1">#</td>
-            </tr>
-            <tr className="w-full">
-              <td className=" border border-black p-1">#</td>
-              <td className=" border border-black p-1">#</td>
-              <td className=" border border-black p-1">#</td>
-            </tr>
-            <tr className="w-full">
-              <td className=" border border-black p-1">#</td>
-              <td className=" border border-black p-1">#</td>
-              <td className=" border border-black p-1">#</td>
-            </tr>
-            <tr className="w-full">
-              <td className=" border border-black p-1">#</td>
-              <td className=" border border-black p-1">#</td>
-              <td className=" border border-black p-1">#</td>
-            </tr>
-            <tr className="w-full">
-              <td className=" border border-black p-1">#</td>
-              <td className=" border border-black p-1">#</td>
-              <td className=" border border-black p-1">#</td>
-            </tr>
-            <tr className="w-full">
-              <td className=" border border-black p-1">#</td>
-              <td className=" border border-black p-1">#</td>
-              <td className=" border border-black p-1">#</td>
-            </tr>
-          </tbody>
-        </table>
+        {passwordArray.length === 0 && <div> No Password To Show..</div>}
+        {passwordArray.length != 0 && (
+          <table className=" table-auto w-full rounded-xl overflow-hidden">
+            <thead className="text-center bg-red-400">
+              <tr className="w-full text-center">
+                <th className="w-2/6 p-2 text-lg border border-black">Site</th>
+                <th className="w-2/6 p-2 text-lg border border-black">
+                  Username
+                </th>
+                <th className="w-2/6 p-2 text-lg border border-black ">
+                  Password
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-zinc-200 text-center">
+              {passwordArray.map((data) => {
+                return (
+                  <tr className="w-full">
+                    <td className=" border border-black p-1">{data.site}</td>
+                    <td className=" border border-black p-1">
+                      {data.username}
+                    </td>
+                    <td className=" border border-black p-1">
+                      {data.password}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
     </>
   );
