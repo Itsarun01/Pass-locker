@@ -27,10 +27,10 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative h-screen w-full bg-white">
+      {/* <div className="relative h-screen w-full bg-white">
         <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
-      </div>
-      <div className="my-container w-[80vw] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+      </div> */}
+      <div className="my-container w-[80vw] h-[80vh]">
         <div className="text-white text-center mb-5">
           <h1 className="text-black text-3xl font-bold mb-2">
             Manage Your Password
@@ -41,7 +41,7 @@ const Home = () => {
         </div>
         <div className="text-black flex flex-col items-center w-full">
           <input
-            className="rounded-full w-[120%] py-3 px-7 my-5 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
+            className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
             type="text"
             value={form.site}
             name="site"
@@ -49,7 +49,7 @@ const Home = () => {
             placeholder="Enter Your URL..."
           />
           <input
-            className="rounded-full w-[120%] py-3 px-7 my-5 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
+            className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
             type="text"
             value={form.username}
             name="username"
@@ -57,7 +57,7 @@ const Home = () => {
             placeholder="Enter Your Username..."
           />
           <input
-            className="rounded-full w-[120%] py-3 px-7 my-5 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
+            className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
             type="text"
             value={form.password}
             name="password"
@@ -79,7 +79,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="absolute top-[85%] left-[50%] translate-x-[-50%] saved-password w-[80vw] mx-auto h-auto text-center pb-12">
+      <div className="saved-password w-[80vw] mx-auto h-auto text-center pb-12">
         <h2 className="text-2xl font-bold p-9">Your Password</h2>
         {passwordArray.length === 0 && <div> No Password Save..</div>}
         {passwordArray.length != 0 && (
@@ -116,26 +116,26 @@ const Home = () => {
         )}
       </div>
 
-      <footer className=" rounded-lg shadow m-4 ">
+      <footer className=" rounded-lg shadow m-4 bg-zinc-300">
         <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
           <span className=" text-black font-bold">
             © 2024{" "}
             <a href="https://flowbite.com/" class="hover:underline">
               Pass Locker
             </a>
-            . All Rights Reserved.
+            . <span className="text-red-600">All Rights Reserved.</span>
           </span>
           <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-black sm:mt-0 ">
             <li>
               Made By{" "}
               <a
-                className="hover:text-red-600"
+                className="text-red-600 hover:text-white"
                 href="https://github.com/Itsarun01"
               >
                 Arun kumar |
               </a>
               <a
-                className="hover:text-red-600"
+                className="text-red-600 hover:text-white"
                 href="https://github.com/Zodik09"
               >
                 {""} Adarsh Vishwakarma
