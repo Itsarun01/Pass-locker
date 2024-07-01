@@ -32,10 +32,10 @@ const Home = () => {
       </div>
       <div className="my-container w-[80vw] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
         <div className="text-white text-center mb-5">
-          <h1 className="text-black text-4xl font-bold mb-2">
+          <h1 className="text-black text-3xl font-bold mb-2">
             Manage Your Password
           </h1>
-          <p className="text-black text-2xl">
+          <p className="text-black font-semibold text-xl">
             Your Own Password Manager, Fully Secured.
           </p>
         </div>
