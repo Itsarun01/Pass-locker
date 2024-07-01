@@ -32,16 +32,16 @@ const Home = () => {
       </div>
       <div className="my-container w-[80vw] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
         <div className="text-white text-center mb-5">
-          <h1 className="text-black text-3xl font-bold mb-2">
+          <h1 className="text-black text-4xl font-bold mb-2">
             Manage Your Password
           </h1>
-          <p className="text-black text-xl">
+          <p className="text-black text-2xl">
             Your Own Password Manager, Fully Secured.
           </p>
         </div>
         <div className="text-black flex flex-col items-center w-full">
           <input
-            className="rounded-full w-[120%] py-2 px-7 my-5 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
+            className="rounded-full w-[120%] py-3 px-7 my-5 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
             type="text"
             value={form.site}
             name="site"
@@ -49,7 +49,7 @@ const Home = () => {
             placeholder="Enter Your URL..."
           />
           <input
-            className="rounded-full w-[120%] py-2 px-7 my-5 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
+            className="rounded-full w-[120%] py-3 px-7 my-5 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
             type="text"
             value={form.username}
             name="username"
@@ -57,7 +57,7 @@ const Home = () => {
             placeholder="Enter Your Username..."
           />
           <input
-            className="rounded-full w-[120%] py-2 px-7 my-5 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
+            className="rounded-full w-[120%] py-3 px-7 my-5 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
             type="text"
             value={form.password}
             name="password"
@@ -78,7 +78,8 @@ const Home = () => {
           </button>
         </div>
       </div>
-      <div className="absolute top-full left-[50%] translate-x-[-50%] saved-password w-[80vw] mx-auto h-auto text-center pb-12">
+
+      <div className="absolute top-[85%] left-[50%] translate-x-[-50%] saved-password w-[80vw] mx-auto h-auto text-center pb-12">
         <h2 className="text-2xl font-bold p-9">Your Password</h2>
         {passwordArray.length === 0 && <div> No Password Save..</div>}
         {passwordArray.length != 0 && (
