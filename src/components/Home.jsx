@@ -11,13 +11,13 @@ const Home = () => {
     if (passwords) {
       setPasswordArray(JSON.parse(passwords));
     } else {
-      setPasswordArray;
     }
   }, []);
 
   const savePassword = () => {
     setPasswordArray([...passwordArray, form]);
     localStorage.getItem("passwords", JSON.stringify([...passwordArray, form]));
+    setForm({site: "", username: "", password: ""});
     console.log(passwordArray);
   };
 
@@ -80,7 +80,7 @@ const Home = () => {
       </div>
       <div className="absolute top-full left-[50%] translate-x-[-50%] saved-password w-[80vw] mx-auto h-auto text-center pb-12">
         <h2 className="text-2xl font-bold p-9">Your Password</h2>
-        {passwordArray.length === 0 && <div> No Password To Show..</div>}
+        {passwordArray.length === 0 && <div> No Password Save..</div>}
         {passwordArray.length != 0 && (
           <table className=" table-auto w-full rounded-xl overflow-hidden">
             <thead className="text-center bg-red-400">
@@ -98,7 +98,9 @@ const Home = () => {
               {passwordArray.map((data) => {
                 return (
                   <tr className="w-full">
-                    <td className=" border border-black p-1">{data.site}</td>
+                    <td className=" border border-black p-1">
+                      <a href={data.site}> {data.site}</a>
+                    </td>
                     <td className=" border border-black p-1">
                       {data.username}
                     </td>
