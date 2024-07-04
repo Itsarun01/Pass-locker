@@ -1,8 +1,10 @@
 import React from "react";
-import {useState, useEffect} from "react";
+import { useState, useEffect, useRef } from "react";
+// import closeEye from "../assets/closeEye.svg"
+// import openEye from "../assets/openEye.svg"
 
 const Home = () => {
-  const [form, setForm] = useState({site: "", username: "", password: ""});
+  const [form, setForm] = useState({ site: "", username: "", password: "" });
 
   const [passwordArray, setPasswordArray] = useState([]);
 
@@ -17,13 +19,24 @@ const Home = () => {
   const savePassword = () => {
     setPasswordArray([...passwordArray, form]);
     localStorage.getItem("passwords", JSON.stringify([...passwordArray, form]));
-    setForm({site: "", username: "", password: ""});
+    setForm({ site: "", username: "", password: "" });
     console.log(passwordArray);
   };
 
   const handleChange = (e) => {
-    setForm({...form, [e.target.name]: e.target.value});
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  const ref = useRef()
+  const showPassword = () => {
+    if(ref.current.src.includes("assets/closeEye.svg")){
+      ref.current.src = "assets/openEye.svg"
+    }
+    else{                     
+      ref.current.src = "assets/closeEye.svg"
+    }
+    
+  }
 
   return (
     <>
@@ -39,7 +52,7 @@ const Home = () => {
             Your Own Password Manager, Fully Secured.
           </p>
         </div>
-        <div className="text-black flex flex-col items-center w-full">
+        <div className="relative text-black flex flex-col items-center w-full">
           <input
             className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
             type="text"
@@ -65,6 +78,11 @@ const Home = () => {
             placeholder="Enter Your Password..."
           />
 
+          <div className="eye cursor-pointer" onClick={showPassword}>
+            <img className="w-6 absolute -right-14 bottom-[29%] " src="../src/assets/closeEye.svg" ref={ref} alt=""/>
+            {/* <img className="w-6 absolute -right-14 bottom-[29%] " src={closeEye} alt="" /> */}
+          </div>
+
           <button
             onClick={savePassword}
             className="mt-5 py-1 w-[200px] rounded-3xl bg-red-400 text-white text-sx font-bold hover:bg-red-500 flex justify-center items-center gap-1"
@@ -81,7 +99,7 @@ const Home = () => {
 
       <div className="saved-password w-[80vw] mx-auto h-auto text-center pb-12">
         <h2 className="text-2xl font-bold p-9">Your Password</h2>
-        {passwordArray.length === 0 && <div> No Password Save..</div>}
+        {passwordArray.length === 0 && <div> No Saved Password...</div>}
         {passwordArray.length != 0 && (
           <table className=" table-auto w-full rounded-xl overflow-hidden">
             <thead className="text-center bg-red-400">
