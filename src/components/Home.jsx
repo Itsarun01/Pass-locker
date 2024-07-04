@@ -1,10 +1,8 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
-// import closeEye from "../assets/closeEye.svg"
-// import openEye from "../assets/openEye.svg"
+import {useState, useEffect, useRef} from "react";
 
 const Home = () => {
-  const [form, setForm] = useState({ site: "", username: "", password: "" });
+  const [form, setForm] = useState({site: "", username: "", password: ""});
 
   const [passwordArray, setPasswordArray] = useState([]);
 
@@ -19,24 +17,23 @@ const Home = () => {
   const savePassword = () => {
     setPasswordArray([...passwordArray, form]);
     localStorage.getItem("passwords", JSON.stringify([...passwordArray, form]));
-    setForm({ site: "", username: "", password: "" });
+    setForm({site: "", username: "", password: ""});
     console.log(passwordArray);
   };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({...form, [e.target.name]: e.target.value});
   };
 
-  const ref = useRef()
+  const ref = useRef();
+
   const showPassword = () => {
-    if(ref.current.src.includes("assets/closeEye.svg")){
-      ref.current.src = "assets/openEye.svg"
+    if (ref.current.src.includes("assets/close.svg")) {
+      ref.current.src = "assets/open.svg";
+    } else {
+      ref.current.src = "assets/close.svg";
     }
-    else{                     
-      ref.current.src = "assets/closeEye.svg"
-    }
-    
-  }
+  };
 
   return (
     <>
@@ -78,9 +75,13 @@ const Home = () => {
             placeholder="Enter Your Password..."
           />
 
-          <div className="eye cursor-pointer" onClick={showPassword}>
-            <img className="w-6 absolute -right-14 bottom-[29%] " src="../src/assets/closeEye.svg" ref={ref} alt=""/>
-            {/* <img className="w-6 absolute -right-14 bottom-[29%] " src={closeEye} alt="" /> */}
+          <div onClick={showPassword}>
+            <img
+              className="w-6 absolute -right-14 bottom-[29%] "
+              src="assets/close.svg"
+              ref={ref}
+              alt=""
+            />
           </div>
 
           <button
