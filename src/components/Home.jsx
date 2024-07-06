@@ -1,8 +1,8 @@
 import React from "react";
-import {useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Home = () => {
-  const [form, setForm] = useState({site: "", username: "", password: ""});
+  const [form, setForm] = useState({ site: "", username: "", password: "" });
 
   const [passwordArray, setPasswordArray] = useState([]);
 
@@ -17,12 +17,12 @@ const Home = () => {
   const savePassword = () => {
     setPasswordArray([...passwordArray, form]);
     localStorage.getItem("passwords", JSON.stringify([...passwordArray, form]));
-    setForm({site: "", username: "", password: ""});
+    setForm({ site: "", username: "", password: "" });
     console.log(passwordArray);
   };
 
   const handleChange = (e) => {
-    setForm({...form, [e.target.name]: e.target.value});
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const ref = useRef();
@@ -51,7 +51,7 @@ const Home = () => {
         </div>
         <div className="relative text-black flex flex-col items-center w-full">
           <input
-            className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
+            className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-2 border-zinc-800 border-solid bg-transparent placeholder:text-zinc-800"
             type="text"
             value={form.site}
             name="site"
@@ -59,7 +59,7 @@ const Home = () => {
             placeholder="Enter Your URL..."
           />
           <input
-            className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
+            className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-2 border-zinc-800 border-solid bg-transparent placeholder:text-zinc-800"
             type="text"
             value={form.username}
             name="username"
@@ -67,7 +67,7 @@ const Home = () => {
             placeholder="Enter Your Username..."
           />
           <input
-            className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-0 bg-zinc-200 placeholder:text-zinc-500"
+            className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-2 border-zinc-800 border-solid bg-transparent placeholder:text-zinc-800"
             type="text"
             value={form.password}
             name="password"
@@ -86,13 +86,26 @@ const Home = () => {
 
           <button
             onClick={savePassword}
-            className="mt-5 py-1 w-[200px] rounded-3xl bg-red-400 text-white text-sx font-bold hover:bg-red-500 flex justify-center items-center gap-1"
+            className="mt-5 py-2 w-[200px] rounded-3xl bg-red-500 text-white text-sx font-bold hover:bg-red-400 hover:text-zinc-100 flex justify-center items-center gap-1"
           >
-            <lord-icon
-              src="https://cdn.lordicon.com/jgnvfzqg.json"
-              trigger="hover"
-              className="text"
-            ></lord-icon>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={25}
+              height={25}
+              viewBox="0 0 24 24"
+            >
+              <g
+                fill="none"
+                stroke="white"
+                strokeLinecap="round"
+                strokeWidth={2}
+              >
+                <rect width={7} height={7} x={3} y={3} rx={1}></rect>
+                <rect width={7} height={7} x={3} y={14} rx={1}></rect>
+                <rect width={7} height={7} x={14} y={3} rx={1}></rect>
+                <path d="M17.5 14v7m3.5-3.5h-7"></path>
+              </g>
+            </svg>
             Save Password
           </button>
         </div>
@@ -103,13 +116,15 @@ const Home = () => {
         {passwordArray.length === 0 && <div> No Saved Password...</div>}
         {passwordArray.length != 0 && (
           <table className=" table-auto w-full rounded-xl overflow-hidden">
-            <thead className="text-center bg-red-400">
+            <thead className="text-center bg-red-500">
               <tr className="w-full text-center">
-                <th className="w-2/6 p-2 text-lg border border-black">Site</th>
-                <th className="w-2/6 p-2 text-lg border border-black">
+                <th className="w-2/6 p-2 text-lg border border-black text-white">
+                  Site
+                </th>
+                <th className="w-2/6 p-2 text-lg border border-black text-white">
                   Username
                 </th>
-                <th className="w-2/6 p-2 text-lg border border-black ">
+                <th className="w-2/6 p-2 text-lg border border-black text-white ">
                   Password
                 </th>
               </tr>

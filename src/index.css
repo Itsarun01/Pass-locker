@@ -8,3 +8,6 @@
        @apply container px-32  py-16  mx-auto;
     } 
   }
+.backgradient{
+   background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
+}
