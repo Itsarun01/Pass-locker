@@ -1,8 +1,8 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import {useState, useEffect, useRef} from "react";
 
 const Home = () => {
-  const [form, setForm] = useState({ site: "", username: "", password: "" });
+  const [form, setForm] = useState({site: "", username: "", password: ""});
 
   const [passwordArray, setPasswordArray] = useState([]);
 
@@ -17,12 +17,12 @@ const Home = () => {
   const savePassword = () => {
     setPasswordArray([...passwordArray, form]);
     localStorage.getItem("passwords", JSON.stringify([...passwordArray, form]));
-    setForm({ site: "", username: "", password: "" });
+    setForm({site: "", username: "", password: ""});
     console.log(passwordArray);
   };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({...form, [e.target.name]: e.target.value});
   };
 
   const ref = useRef();
@@ -51,7 +51,7 @@ const Home = () => {
         </div>
         <div className="relative text-black flex flex-col items-center w-full">
           <input
-            className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-2 border-zinc-800 border-solid bg-transparent placeholder:text-zinc-800"
+            className="rounded-full w-[120%] py-2 px-7 my-4 outline-0 border-2 border-red-500 border-solid bg-transparent placeholder:text-zinc-800"
             type="text"
             value={form.site}
             name="site"
@@ -59,7 +59,7 @@ const Home = () => {
             placeholder="Enter Your URL..."
           />
           <input
-            className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-2 border-zinc-800 border-solid bg-transparent placeholder:text-zinc-800"
+            className="rounded-full w-[120%] py-2 px-7 my-4 outline-0 border-2 border-red-500 border-solid bg-transparent placeholder:text-zinc-800"
             type="text"
             value={form.username}
             name="username"
@@ -67,7 +67,7 @@ const Home = () => {
             placeholder="Enter Your Username..."
           />
           <input
-            className="rounded-full w-[120%] py-3 px-7 my-4 outline-0 border-2 border-zinc-800 border-solid bg-transparent placeholder:text-zinc-800"
+            className="rounded-full w-[120%] py-2 px-7 my-4 outline-0 border-2 border-red-500 border-solid bg-transparent placeholder:text-zinc-800"
             type="text"
             value={form.password}
             name="password"
@@ -77,7 +77,7 @@ const Home = () => {
 
           <div onClick={showPassword}>
             <img
-              className="w-6 absolute -right-14 bottom-[29%] "
+              className="w-6 absolute -right-12 bottom-[29%] "
               src="assets/close.svg"
               ref={ref}
               alt=""
@@ -111,37 +111,27 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="saved-password w-[80vw] mx-auto h-auto text-center pb-12">
+      <div className="saved-password w-[80vw] mx-auto h-auto text-center pb-16">
         <h2 className="text-2xl font-bold p-9">Your Password</h2>
         {passwordArray.length === 0 && <div> No Saved Password...</div>}
         {passwordArray.length != 0 && (
           <table className=" table-auto w-full rounded-xl overflow-hidden">
             <thead className="text-center bg-red-500">
               <tr className="w-full text-center">
-                <th className="w-2/6 p-2 text-lg border border-black text-white">
-                  Site
-                </th>
-                <th className="w-2/6 p-2 text-lg border border-black text-white">
-                  Username
-                </th>
-                <th className="w-2/6 p-2 text-lg border border-black text-white ">
-                  Password
-                </th>
+                <th className="w-2/6 p-1 text-lg  text-white">Site</th>
+                <th className="w-2/6 p-1 text-lg   text-white">Username</th>
+                <th className="w-2/6 p-1 text-lg  text-white ">Password</th>
               </tr>
             </thead>
             <tbody className="bg-zinc-200 text-center">
               {passwordArray.map((data, index) => {
                 return (
                   <tr className="w-full" key={"index"}>
-                    <td className=" border border-black p-1">
+                    <td className=" border p-1">
                       <a href={data.site}> {data.site}</a>
                     </td>
-                    <td className=" border border-black p-1">
-                      {data.username}
-                    </td>
-                    <td className=" border border-black p-1">
-                      {data.password}
-                    </td>
+                    <td className=" border p-1">{data.username}</td>
+                    <td className=" border p-1">{data.password}</td>
                   </tr>
                 );
               })}
