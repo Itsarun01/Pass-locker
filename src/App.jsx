@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
-      <div className="backgradient p-3">
+      <div className="backgradient p-2 overflow-x-hidden">
         <Navbar />
         <Home />
         <Footer />

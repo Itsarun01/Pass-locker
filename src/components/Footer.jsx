@@ -4,7 +4,7 @@ const footer = () => {
   return (
     <>
       <footer className="rounded-lg shadow bg-red-500">
-        <div className="w-full p-4 ">
+        <div className="w-full p-2 ">
           <ul className=" text-center  text-sm font-medium text-white ">
             <li>
               Made By : {""}
