@@ -1,6 +1,9 @@
 import React from "react";
 import {useState, useEffect, useRef} from "react";
 
+import {ToastContainer, toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Home = () => {
   const [form, setForm] = useState({site: "", username: "", password: ""});
 
@@ -26,14 +29,49 @@ const Home = () => {
   };
 
   const ref = useRef();
+  const passRef = useRef();
 
   const showPassword = () => {
     if (ref.current.src.includes("assets/close.svg")) {
       ref.current.src = "assets/open.svg";
+      passRef.current.type = "text";
     } else {
       ref.current.src = "assets/close.svg";
+      passRef.current.type = "password";
     }
   };
+
+  const copyText = (text) => {
+    toast(" Copide to Clipboard !", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+    navigator.clipboard.writeText(text);
+  };
+
+  <ToastContainer
+    position="top-right"
+    autoClose={5000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    theme="light"
+  />;
+  {
+    /* Same as */
+  }
+  <ToastContainer />;
 
   return (
     <>
@@ -66,7 +104,8 @@ const Home = () => {
           <div className="w-full relative">
             <input
               className="rounded-full w-[100%] py-2 px-7 my-4 outline-0 border-2 border-red-500 border-solid bg-transparent placeholder:text-zinc-800"
-              type="text"
+              type="password"
+              ref={passRef}
               value={form.password}
               name="password"
               onChange={handleChange}
@@ -119,27 +158,59 @@ const Home = () => {
           <table className="my-3 w-full rounded-md overflow-hidden border-r border-b border-black">
             <thead className="bg-red-500">
               <tr>
-                <th className="text-white p-1 border-r border-white">Site</th>
-                <th className="text-white p-1 border-r border-white">
-                  Username
-                </th>
-                <th className="text-white p-1 border-r border-white">
-                  Password
-                </th>
+                <th className="text-white p-1 ">Site</th>
+                <th className="text-white p-1">Username</th>
+                <th className="text-white p-1 ">Password</th>
               </tr>
             </thead>
             <tbody className="bg-zinc-300">
               {passwordArray.map((data, index) => {
                 return (
                   <tr key={"index"} className="max-w-[25%]">
-                    <td className="max-w-[5vw] p-2 truncate border-r border-b border-t border-white">
-                      <a href={data.site}> {data.site}</a>
+                    <td className="max-w-[5vw] p-1 truncate border-r border-b border-t border-white">
+                      <div
+                        className="flex justify-center items-center gap-3 "
+                        onClick={() => {
+                          copyText(data.site);
+                        }}
+                      >
+                        {data.site}
+                        <img
+                          className="w-5"
+                          src="/public/assets/copy.svg"
+                          alt=""
+                        />
+                      </div>
                     </td>
-                    <td className="max-w-[5vw] p-2 truncate border-r border-b border-t border-white">
-                      {data.username}
+                    <td className="max-w-[5vw] p-1 truncate border-r border-b border-t border-white">
+                      <div
+                        className="flex justify-center items-center gap-3 "
+                        onClick={() => {
+                          copyText(data.username);
+                        }}
+                      >
+                        {data.username}
+                        <img
+                          className="w-5"
+                          src="/public/assets/copy.svg"
+                          alt=""
+                        />
+                      </div>
                     </td>
-                    <td className="max-w-[5vw] p-2 truncate border-r border-b border-t border-white">
-                      {data.password}
+                    <td className="max-w-[5vw] p-1 truncate border-r border-b border-t border-white">
+                      <div
+                        className="flex justify-center items-center gap-3 "
+                        onClick={() => {
+                          copyText(data.password);
+                        }}
+                      >
+                        {data.password}
+                        <img
+                          className="w-5 text-red-500"
+                          src="/public/assets/copy.svg"
+                          alt=""
+                        />
+                      </div>
                     </td>
                   </tr>
                 );
