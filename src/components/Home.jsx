@@ -1,8 +1,8 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import {useState, useEffect, useRef} from "react";
 
 const Home = () => {
-  const [form, setForm] = useState({ site: "", username: "", password: "" });
+  const [form, setForm] = useState({site: "", username: "", password: ""});
 
   const [passwordArray, setPasswordArray] = useState([]);
 
@@ -17,12 +17,12 @@ const Home = () => {
   const savePassword = () => {
     setPasswordArray([...passwordArray, form]);
     localStorage.getItem("passwords", JSON.stringify([...passwordArray, form]));
-    setForm({ site: "", username: "", password: "" });
+    setForm({site: "", username: "", password: ""});
     console.log(passwordArray);
   };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({...form, [e.target.name]: e.target.value});
   };
 
   const ref = useRef();
@@ -37,9 +37,6 @@ const Home = () => {
 
   return (
     <>
-      {/* <div className="relative h-screen w-full bg-white">
-        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
-      </div> */}
       <div className="my-container w-[80vw] h-3/4 m-auto">
         <div className="text-white text-center mb-5">
           <h1 className="text-black text-3xl font-bold mb-2 mt-10 text-nowrap">
@@ -112,15 +109,23 @@ const Home = () => {
       </div>
 
       <div className="max-w-[80vw] m-auto text-center my-10">
-        <h2 className="text-3xl font-black mb-5">Your Password</h2>
-        {passwordArray.length === 0 && <div className="text-xl"> No Saved Password...</div>}
+        <h2 className="font-bold text-xl text-white py-2 rounded-lg  mb-5 bg-red-500 w-full">
+          Your Password
+        </h2>
+        {passwordArray.length === 0 && (
+          <div className="text-xl"> No Saved Password...</div>
+        )}
         {passwordArray.length != 0 && (
           <table className="my-3 w-full rounded-md overflow-hidden border-r border-b border-black">
             <thead className="bg-red-500">
               <tr>
                 <th className="text-white p-1 border-r border-white">Site</th>
-                <th className="text-white p-1 border-r border-white">Username</th>
-                <th className="text-white p-1 border-r border-white">Password</th>
+                <th className="text-white p-1 border-r border-white">
+                  Username
+                </th>
+                <th className="text-white p-1 border-r border-white">
+                  Password
+                </th>
               </tr>
             </thead>
             <tbody className="bg-zinc-300">
@@ -130,8 +135,12 @@ const Home = () => {
                     <td className="max-w-[5vw] p-2 truncate border-r border-b border-t border-white">
                       <a href={data.site}> {data.site}</a>
                     </td>
-                    <td className="max-w-[5vw] p-2 truncate border-r border-b border-t border-white">{data.username}</td>
-                    <td className="max-w-[5vw] p-2 truncate border-r border-b border-t border-white">{data.password}</td>
+                    <td className="max-w-[5vw] p-2 truncate border-r border-b border-t border-white">
+                      {data.username}
+                    </td>
+                    <td className="max-w-[5vw] p-2 truncate border-r border-b border-t border-white">
+                      {data.password}
+                    </td>
                   </tr>
                 );
               })}
