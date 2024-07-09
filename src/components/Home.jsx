@@ -1,7 +1,7 @@
 import React from "react";
 import {useState, useEffect, useRef} from "react";
-
 import {ToastContainer, toast} from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
@@ -50,31 +50,28 @@ const Home = () => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "light",
-      transition: Bounce,
     });
+
     navigator.clipboard.writeText(text);
   };
 
-  <ToastContainer
-    position="top-right"
-    autoClose={5000}
-    hideProgressBar={false}
-    newestOnTop={false}
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss
-    draggable
-    pauseOnHover
-    theme="light"
-  />;
-  {
-    /* Same as */
-  }
-  <ToastContainer />;
-
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition="Bounce"
+      />
+      ;{/* Same as */}
+      <ToastContainer />;
       <div className="my-container w-[80vw] h-3/4 m-auto">
         <div className="text-white text-center mb-5">
           <h1 className="text-black text-3xl font-bold mb-2 mt-10 text-nowrap">
@@ -146,7 +143,6 @@ const Home = () => {
           </button>
         </div>
       </div>
-
       <div className="max-w-[80vw] m-auto text-center my-10">
         <h2 className="font-bold text-xl text-white py-2 rounded-lg  mb-5 bg-red-500 w-full">
           Your Password
