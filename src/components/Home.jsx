@@ -70,8 +70,7 @@ const Home = () => {
         theme="light"
         transition="Bounce"
       />
-      ;{/* Same as */}
-      <ToastContainer />;
+      <ToastContainer />
       <div className="my-container w-[80vw] h-3/4 m-auto">
         <div className="text-white text-center mb-5">
           <h1 className="text-black text-3xl font-bold mb-2 mt-10 text-nowrap">
