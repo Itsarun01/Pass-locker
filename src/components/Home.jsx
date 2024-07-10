@@ -1,8 +1,10 @@
 import React from "react";
 import {useState, useEffect, useRef} from "react";
 import {ToastContainer, toast} from "react-toastify";
+import {v4 as uuidv4} from "uuid";
 
 import "react-toastify/dist/ReactToastify.css";
+import {data} from "autoprefixer";
 
 const Home = () => {
   const [form, setForm] = useState({site: "", username: "", password: ""});
@@ -18,10 +20,28 @@ const Home = () => {
   }, []);
 
   const savePassword = () => {
-    setPasswordArray([...passwordArray, form]);
-    localStorage.getItem("passwords", JSON.stringify([...passwordArray, form]));
+    setPasswordArray([...passwordArray, {...form, id: uuidv4()}]);
+    localStorage.setItem(
+      "passwords",
+      JSON.stringify([...passwordArray, {...form, id: uuidv4()}])
+    );
     setForm({site: "", username: "", password: ""});
-    console.log(passwordArray);
+    console.log([...passwordArray, form]);
+  };
+
+  const deletePassword = (id) => {
+    console.log("delete", id);
+    setPasswordArray(passwordArray.filter((data) => data.id !== id));
+    localStorage.removeItem(data.id);
+    // localStorage.setItem(
+    //   "password",
+    //   JSON.stringify(passwordArray.filter((data) => data.id == id))
+    // );
+  };
+
+  const editPassword = (id) => {
+    console.log("edit", id);
+    setForm(passwordArray.filter((i) => i.id === id));
   };
 
   const handleChange = (e) => {
@@ -80,9 +100,9 @@ const Home = () => {
             Your Own Password Manager, Fully Secured.
           </p>
         </div>
-        <div className="relative text-black flex flex-col items-center w-full">
+        <div className="select-none relative text-black flex flex-col items-center w-full">
           <input
-            className="rounded-full w-[100%] py-2 px-7 my-4 outline-0 border-2 border-red-500 border-solid bg-transparent placeholder:text-zinc-800"
+            className=" rounded-full w-[100%] py-2 px-7 my-4 outline-0 border-2 border-red-500 border-solid bg-transparent placeholder:text-zinc-800"
             type="text"
             value={form.site}
             name="site"
@@ -90,7 +110,7 @@ const Home = () => {
             placeholder="Enter Your URL..."
           />
           <input
-            className="rounded-full w-[100%] py-2 px-7 my-4 outline-0 border-2 border-red-500 border-solid bg-transparent placeholder:text-zinc-800"
+            className=" rounded-full w-[100%] py-2 px-7 my-4 outline-0 border-2 border-red-500 border-solid bg-transparent placeholder:text-zinc-800"
             type="text"
             value={form.username}
             name="username"
@@ -99,7 +119,7 @@ const Home = () => {
           />
           <div className="w-full relative">
             <input
-              className="rounded-full w-[100%] py-2 px-7 my-4 outline-0 border-2 border-red-500 border-solid bg-transparent placeholder:text-zinc-800"
+              className=" rounded-full w-[100%] py-2 px-7 my-4 outline-0 border-2 border-red-500 border-solid bg-transparent placeholder:text-zinc-800"
               type="password"
               ref={passRef}
               value={form.password}
@@ -156,6 +176,7 @@ const Home = () => {
                 <th className="text-white p-1 ">Site</th>
                 <th className="text-white p-1">Username</th>
                 <th className="text-white p-1 ">Password</th>
+                <th className="text-white p-1 ">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-zinc-300">
@@ -205,6 +226,33 @@ const Home = () => {
                           src="/public/assets/copy.svg"
                           alt=""
                         />
+                      </div>
+                    </td>
+                    <td className="max-w-[5vw] p-1 truncate border-r border-b border-t border-white">
+                      <div className="flex justify-center items-center gap-4">
+                        <span
+                          className="w-5"
+                          onClick={() => {
+                            deletePassword(data.id);
+                          }}
+                        >
+                          <img
+                            className="w-5"
+                            src="/public/assets/delete.svg"
+                            alt=""
+                          />
+                        </span>
+                        <span
+                          onClick={() => {
+                            editPassword(data.id);
+                          }}
+                        >
+                          <img
+                            className="w-5"
+                            src="/public/assets/edit.svg"
+                            alt=""
+                          />
+                        </span>
                       </div>
                     </td>
                   </tr>
