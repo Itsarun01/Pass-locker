@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .backgradient{
-   background-image: linear-gradient(120deg, #ffdbdb 0%, #ebedee 100%);
+   background-image: linear-gradient(120deg, #f6e4e4 0%, #e3dede 100%);
 }

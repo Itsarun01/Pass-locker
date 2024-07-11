@@ -27,21 +27,42 @@ const Home = () => {
     );
     setForm({site: "", username: "", password: ""});
     console.log([...passwordArray, form]);
+
+    toast(" Your Password is saved successfully!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   const deletePassword = (id) => {
-    console.log("delete", id);
-    setPasswordArray(passwordArray.filter((data) => data.id !== id));
-    localStorage.removeItem(data.id);
-    // localStorage.setItem(
-    //   "password",
-    //   JSON.stringify(passwordArray.filter((data) => data.id == id))
-    // );
+    let c = confirm("Do you really want to delete this?");
+    if (c) {
+      setPasswordArray(passwordArray.filter((data) => data.id !== id));
+      localStorage.setItem(
+        "passwords",
+        JSON.stringify(passwordArray.filter((data) => data.id !== id))
+      );
+    }
+
+    toast(" Your Password is Deleted !", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   const editPassword = (id) => {
-    console.log("edit", id);
-    setForm(passwordArray.filter((i) => i.id === id));
+    setForm(passwordArray.filter((i) => i.id === id)[0]);
+    setPasswordArray(passwordArray.filter((item) => item.id !== id));
   };
 
   const handleChange = (e) => {
